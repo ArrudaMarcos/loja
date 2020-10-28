@@ -1,5 +1,7 @@
 package br.com.marcos.microservice.loja.controller.dto;
 
+import java.util.Objects;
+
 public class EnderecoDto {
 
     private String rua;
@@ -30,5 +32,27 @@ public class EnderecoDto {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnderecoDto that = (EnderecoDto) o;
+        return numero == that.numero &&
+                Objects.equals(rua, that.rua) &&
+                Objects.equals(estado, that.estado);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rua, numero, estado);
+    }
+
+    @Override
+    public String toString() {
+        return "rua='" + rua + '\'' +
+                ", numero=" + numero +
+                ", estado='" + estado + '\'';
     }
 }
